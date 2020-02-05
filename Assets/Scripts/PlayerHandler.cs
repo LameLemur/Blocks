@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
@@ -38,6 +37,33 @@ public class PlayerHandler : MonoBehaviour
                 break;
             case "right" :
                 gameObject.GetComponent<Transform>().Translate(new Vector3(Values.GetCellSize(),0,0));
+                break;
+        }
+    }
+    
+    public void SetColor(string color)
+    {
+        switch (color)
+        {
+            case "green":
+                gameObject.GetComponent<BlockHandler>().blocks[0].GetComponent<SpriteRenderer>().color = Colors.GREEN;
+                gameObject.GetComponent<BlockHandler>().blocks[1].GetComponent<SpriteRenderer>().color = Colors.GREEN;
+                gameObject.GetComponent<BlockHandler>().blocks[2].GetComponent<SpriteRenderer>().color = Colors.GREEN;
+                break;
+            case "red":
+                gameObject.GetComponent<BlockHandler>().blocks[0].GetComponent<SpriteRenderer>().color = Colors.RED;
+                gameObject.GetComponent<BlockHandler>().blocks[1].GetComponent<SpriteRenderer>().color = Colors.RED;
+                gameObject.GetComponent<BlockHandler>().blocks[2].GetComponent<SpriteRenderer>().color = Colors.RED;
+                break;
+            case "yellow":
+                gameObject.GetComponent<BlockHandler>().blocks[0].GetComponent<SpriteRenderer>().color = Colors.YELLOW;
+                gameObject.GetComponent<BlockHandler>().blocks[1].GetComponent<SpriteRenderer>().color = Colors.YELLOW;
+                gameObject.GetComponent<BlockHandler>().blocks[2].GetComponent<SpriteRenderer>().color = Colors.YELLOW;
+                break;
+            case "blue":
+                gameObject.GetComponent<BlockHandler>().blocks[0].GetComponent<SpriteRenderer>().color = Colors.BLUE;
+                gameObject.GetComponent<BlockHandler>().blocks[1].GetComponent<SpriteRenderer>().color = Colors.BLUE;
+                gameObject.GetComponent<BlockHandler>().blocks[2].GetComponent<SpriteRenderer>().color = Colors.BLUE;
                 break;
         }
     }

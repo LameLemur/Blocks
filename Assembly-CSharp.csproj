@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GridManager.cs" />
      <Compile Include="Assets\Scripts\PlayerHandler.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelectManager.cs" />
      <Compile Include="Assets\Scripts\SceneChanger.cs" />
      <Compile Include="Assets\Scripts\Values.cs" />
  <Reference Include="Unity.Timeline.Editor">

@@ -29,6 +29,9 @@ public class SceneChanger : MonoBehaviour
             case "tut":
                 SceneManager.LoadScene(5);
                 break;
+            case "playsel":
+                SceneManager.LoadScene(6);
+                break;
         }
     }
     

@@ -11,6 +11,7 @@
           <e p="GameManager.cs" t="Include" />
           <e p="GridManager.cs" t="Include" />
           <e p="PlayerHandler.cs" t="Include" />
+          <e p="PlayerSelectManager.cs" t="Include" />
           <e p="SceneChanger.cs" t="Include" />
           <e p="Values.cs" t="Include" />
         </e>

@@ -8,9 +8,11 @@ using Debug = UnityEngine.Debug;
 
 public class BlockHandler : MonoBehaviour
 {
+    
     public GameObject[] blocks = new GameObject[3];
     public Vector3[] relativeCord = {new Vector3(0,0,0), new Vector3(0,0,0), new Vector3(0,0,0), new Vector3(0,0,0)};
-    public int indexOfFirst = 0;
+    public int indexOfFirst = 3;
+    public string color = "red";
     
     void Start()
     {
@@ -20,26 +22,33 @@ public class BlockHandler : MonoBehaviour
 
         ResizeBlocks();
         CalculateRelativeCords();
-        
+        InitRotation();
+        InitColor();
     }
 
-    public void ChangeColor(string color)
+    public void InitColor()
     {
         switch (color)
         {
             case "green":
-                blocks[0].GetComponent<SpriteRenderer>().color = Color.green;
-                blocks[1].GetComponent<SpriteRenderer>().color = Color.green;
-                blocks[2].GetComponent<SpriteRenderer>().color = Color.green;
+                blocks[0].GetComponent<SpriteRenderer>().color = Colors.fadedGREEN;
+                blocks[1].GetComponent<SpriteRenderer>().color = Colors.fadedGREEN;
+                blocks[2].GetComponent<SpriteRenderer>().color = Colors.fadedGREEN;
                 break;
             case "red":
-                blocks[0].GetComponent<SpriteRenderer>().color = Color.red;
-                blocks[1].GetComponent<SpriteRenderer>().color = Color.red;
-                blocks[2].GetComponent<SpriteRenderer>().color = Color.red;
+                blocks[0].GetComponent<SpriteRenderer>().color = Colors.fadedRED;
+                blocks[1].GetComponent<SpriteRenderer>().color = Colors.fadedRED;
+                blocks[2].GetComponent<SpriteRenderer>().color = Colors.fadedRED;
                 break;
-            case "fadegreen":
+            case "yellow":
+                blocks[0].GetComponent<SpriteRenderer>().color = Colors.fadedYELLOW;
+                blocks[1].GetComponent<SpriteRenderer>().color = Colors.fadedYELLOW;
+                blocks[2].GetComponent<SpriteRenderer>().color = Colors.fadedYELLOW;
                 break;
-            case "fadered":
+            case "blue":
+                blocks[0].GetComponent<SpriteRenderer>().color = Colors.fadedBLUE;
+                blocks[1].GetComponent<SpriteRenderer>().color = Colors.fadedBLUE;
+                blocks[2].GetComponent<SpriteRenderer>().color = Colors.fadedBLUE;
                 break;
         }
     }
@@ -82,5 +91,14 @@ public class BlockHandler : MonoBehaviour
         blocks[0].GetComponent<Transform>().localScale = scale;
         blocks[1].GetComponent<Transform>().localScale = scale;
         blocks[2].GetComponent<Transform>().localScale = scale;
+    }
+
+    
+    public void InitRotation()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+           blocks[i].GetComponent<Transform>().localPosition = relativeCord[(i + indexOfFirst) % 4];
+        }
     }
 }
