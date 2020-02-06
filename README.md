@@ -1,2 +1,2 @@
 Well...
-Im making a small kinda game where u place block of an L in grid, then the opponent does so. The one not able to place an L in da Grid loses.
+Im making a small kinda game where u place blockin the shape of an L in grid, then the opponent does so. The one not able to place an L in da Grid loses.
