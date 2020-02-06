@@ -19,6 +19,7 @@ public static class Values
     }
 
     public static string []playerColor = {"red", "green"};
+    public static string[] playerName = {"Wilfréd", "Alfons"};
 }
 
 public static class Colors

@@ -811,7 +811,7 @@ ScriptsOnlyBuild:
     className: PlayerHandler
   - hash:
       serializedVersion: 2
-      Hash: fa361eec9334fa467096a7328cb8c581
+      Hash: 078b2a1aeb7f0e5fe57817e3d66ff747
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSelectManager

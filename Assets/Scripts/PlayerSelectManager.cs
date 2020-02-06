@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,8 @@ public class PlayerSelectManager : MonoBehaviour
 {
     [SerializeField] private GameObject selectOne;
     [SerializeField] private GameObject selectTwo;
+    [SerializeField] private GameObject nameOne;
+    [SerializeField] private GameObject nameTwo;
     List<string> colors1 = new List<string>() {"Red", "Blue", "Yellow"};
     List<string> colors2 = new List<string>() {"Green", "Blue", "Yellow"};
     private string firstplayer = "Red";
@@ -35,6 +38,8 @@ public class PlayerSelectManager : MonoBehaviour
     {
         Values.playerColor[0] = firstplayer.ToLower();
         Values.playerColor[1] = seondplayer.ToLower();
-         GameObject.Find("SceneChanger").GetComponent<SceneChanger>().changescene("local");
+        Values.playerName[0] = nameOne.GetComponent<Text>().text;
+        Values.playerName[1] = nameTwo.GetComponent<Text>().text;
+        GameObject.Find("SceneChanger").GetComponent<SceneChanger>().changescene("local");
     }
 }

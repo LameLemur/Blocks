@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
         CurrentCord.x = (Values.cellCount + 1) / 2;
         CurrentCord.y = (Values.cellCount + 1) / 2;
         Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
+        
+        GameObject.Find("Player1Name").GetComponent<Text>().text = Values.playerName[0];
+        GameObject.Find("Player2Name").GetComponent<Text>().text = Values.playerName[1];
+        
     }
     
     void Update()
@@ -163,7 +167,6 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 return true;
-                break;
             case 1:
                 switch (Player.GetComponent<BlockHandler>().indexOfFirst)
                 {
@@ -185,7 +188,6 @@ public class GameManager : MonoBehaviour
                         return false;
                 }
                 return true;
-                break;
             default:
                 return false;
         }
