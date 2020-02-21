@@ -30,6 +30,6 @@ public static class Colors
     public static Color YELLOW = new Color( 1, 1, 0);
     public static Color fadedRED    = new Color( 0.8f, 0.2f, 0.2f);
     public static Color fadedGREEN  = new Color( 0.2f, 0.8f, 0.2f);
-    public static Color fadedBLUE   = new Color( 0.2f, 0.2f, 0.8f);
+    public static Color fadedBLUE   = new Color( 0.3f, 0.3f, 0.7f);
     public static Color fadedYELLOW = new Color( 0.8f, 0.8f, 0.2f);
 }
