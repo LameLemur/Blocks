@@ -1,27 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public struct Cord
+public class LanGameManager : MonoBehaviour
 {
-    public int x;
-    public int y;
-}
-
-public class GameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
     private int[,] gameGrid = new int[Values.cellCount, Values.cellCount];
-    private int onTurnPlayerIndex = 0;
+    public int onTurnPlayerIndex = 0;
+    
+    private Cord CurrentCord;
+    
+    private int[] playerScore = {0, 0};
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject Block;
-    private Cord CurrentCord;
-    private int[] playerScore = {0, 0};
-
+    
     void Start()
     {
         ResetGameGrid();
@@ -34,39 +27,9 @@ public class GameManager : MonoBehaviour
         
     }
     
-    void Update()
-    {
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 4])))
-        {
-            Rotate("L");
-        }
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 5])))
-        {
-            Rotate("R");
-        }
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 0])))
-        {
-            OnMoveCalled("up");
-        }
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 2])))
-        {
-            OnMoveCalled("down");
-        }
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 1])))
-        {
-            OnMoveCalled("left");
-        }
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 3])))
-        {
-            OnMoveCalled("right");
-        }
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 6])))
-        {
-            OnPlaceBlockCalled();
-        }
-    }
+    
 
-    void Rotate(string dir)
+    public void Rotate(string dir)
     {
         if(dir == "R")
             Player.GetComponent<PlayerHandler>().RotateRight();
@@ -74,7 +37,7 @@ public class GameManager : MonoBehaviour
             Player.GetComponent<PlayerHandler>().RotateLeft(); 
     }
 
-    void OnMoveCalled(string dir)
+    public void OnMoveCalled(string dir, GameObject sender)
     {
         switch (dir)
         {
@@ -82,32 +45,38 @@ public class GameManager : MonoBehaviour
                 if (CurrentCord.y + 1 < Values.cellCount)
                 {
                     CurrentCord.y++;
-                    Player.GetComponent<PlayerHandler>().Move(dir);
+                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
                 }
                 break;
             case "down":
                 if (CurrentCord.y - 1 > 0)
                 {
                     CurrentCord.y--;
-                    Player.GetComponent<PlayerHandler>().Move(dir);
+                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
                 }
                 break;
             case "left":
                 if (CurrentCord.x - 1 > 0)
                 {
                     CurrentCord.x--;
-                    Player.GetComponent<PlayerHandler>().Move(dir);
+                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
                 }
                 break;
             case "right":
                 if (CurrentCord.x + 1 < Values.cellCount)
                 {
                     CurrentCord.x++;
-                    Player.GetComponent<PlayerHandler>().Move(dir);
+                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
                 }
                 break;
         }
     }
+
+    public void MoveBlock(string dir)
+    {
+        Player.GetComponent<PlayerHandler>().Move(dir);
+    }
+    
     void ResetGameGrid()
     {
         for (int i = 0; i < Values.cellCount; i++)
@@ -119,15 +88,15 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void OnPlaceBlockCalled()
+    public void OnPlaceCalled(GameObject sender)
     {
         if (IsPlaceFree())
-        {
-            PlaceBlock();
+        { 
+            sender.GetComponent<PlayerConnectionControler>().RpcPlace();
         }
     }
 
-    void PlaceBlock()
+    public void PlaceBlock()
     {
         switch (Player.GetComponent<BlockHandler>().indexOfFirst)
         {
@@ -139,7 +108,7 @@ public class GameManager : MonoBehaviour
             case 1:
                 gameGrid[CurrentCord.x, CurrentCord.y - 1] = 1;
                 gameGrid[CurrentCord.x - 1, CurrentCord.y] = 1;
-                gameGrid[CurrentCord.x, CurrentCord.y] = 1;
+                gameGrid[CurrentCord.x, CurrentCord.y] = 1; 
                 break;
             case 2:
                 gameGrid[CurrentCord.x, CurrentCord.y - 1] = 1;

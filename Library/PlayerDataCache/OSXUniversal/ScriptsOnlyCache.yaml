@@ -4,15 +4,24 @@ ScriptsOnlyBuild:
     - BlockHandler
     - GameManager
     - GridManager
+    - LanGameManager
+    - PlayerConnectionControler
     - PlayerHandler
     - PlayerSelectManager
     - SceneChanger
+    Mirror.dll:
+    - Mirror.NetworkIdentity
+    - Mirror.NetworkManager
+    - Mirror.NetworkManagerHUD
+    - Mirror.TelepathyTransport
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    Unity.Rider.Editor.dll:
+    - Packages.Rider.Editor.RiderScriptEditorData
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -55,7 +64,13 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 9682}
+    - Class: 114
       Script: {instanceID: 9686}
+    - Class: 114
+      Script: {instanceID: 9756}
+    - Class: 114
+      Script: {instanceID: 9878}
     - Class: 114
       Script: {instanceID: 9894}
     - Class: 114
@@ -65,13 +80,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10808}
     - Class: 114
+      Script: {instanceID: 11192}
+    - Class: 114
       Script: {instanceID: 11362}
     - Class: 114
+      Script: {instanceID: 11416}
+    - Class: 114
       Script: {instanceID: 11418}
+    - Class: 114
+      Script: {instanceID: 11648}
     - Class: 114
       Script: {instanceID: 11820}
     - Class: 114
       Script: {instanceID: 11886}
+    - Class: 114
+      Script: {instanceID: 13930}
+    - Class: 114
+      Script: {instanceID: 13992}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1093,6 +1118,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: e451c3209496ae292852384ebfdfffab
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerConnectionControler
+  - hash:
+      serializedVersion: 2
+      Hash: 4bbb62e4666614f147155eb0163c0f08
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LanGameManager
   platform: 2
   scenePathNames:
   - Assets/Scenes/StartScene.unity

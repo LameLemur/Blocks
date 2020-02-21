@@ -1,94 +1,93 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Mirror;
 using UnityEngine;
 public class PlayerConnectionControler : NetworkBehaviour
 {
-    [SyncVar(hook = nameof(UpdateBlock))]
-    private Cord CurrentCord;
-    private int[] playerScore = {0, 0};
-    // Start is called before the first frame update
-    void Start()
+    public int playerID = 1;
+    private GameObject LanManager;
+    private void Start()
     {
-        
+        LanManager = GameObject.Find("LanGameManager");
     }
 
-    // Update is called once per frame
+    private void OnConnectedToServer()
+    {
+        playerID = 0;
+    }
+
     void Update()
     {
+        Debug.Log(playerID);
+        if (!isLocalPlayer)
+            return;
+        if (playerID != LanManager.GetComponent<LanGameManager>().onTurnPlayerIndex)
+            return;
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 4])))
         {
-            Rotate("L");
+            CmdRotate("L");
         }
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 5])))
         {
-            Rotate("R");
+            CmdRotate("R");
         }
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 0])))
         {
-            OnMoveCalled("up");
+            CmdOnMoveCalled("up");
         }
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 2])))
         {
-            OnMoveCalled("down");
+            CmdOnMoveCalled("down");
         }
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 1])))
         {
-            OnMoveCalled("left");
+            CmdOnMoveCalled("left");
         }
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 3])))
         {
-            OnMoveCalled("right");
+            CmdOnMoveCalled("right");
         }
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 6])))
         {
-            OnPlaceBlockCalled();
+            CmdOnPlaceCalled();
         }
     }
 
-    void Rotate(string dir)
+    [Command]
+    void CmdOnMoveCalled(string dir)
     {
-        
+        LanManager.GetComponent<LanGameManager>().OnMoveCalled(dir, gameObject);
     }
 
-    void OnMoveCalled(string dir)
+    [ClientRpc]
+    public void RpcMoveBlock(string dir)
     {
-        switch (dir)
-        {
-            case "up":
-                if (CurrentCord.y + 1 < Values.cellCount)
-                {
-                    CurrentCord.y++;
-                }
-                break;
-            case "down":
-                if (CurrentCord.y - 1 > 0)
-                {
-                    CurrentCord.y--;
-                }
-                break;
-            case "left":
-                if (CurrentCord.x - 1 > 0)
-                {
-                    CurrentCord.x--;
-                }
-                break;
-            case "right":
-                if (CurrentCord.x + 1 < Values.cellCount)
-                {
-                    CurrentCord.x++;
-                }
-                break;
-        }
+        LanManager.GetComponent<LanGameManager>().MoveBlock(dir);
     }
-
-    void OnPlaceBlockCalled()
+    
+    [Command]
+    void CmdRotate(string dir)
     {
-        
+        RpcRotate(dir);
     }
-
-    void UpdateBlock(Cord currentCord)
+    
+    [ClientRpc]
+    public void RpcRotate(string dir)
     {
-        
+        LanManager.GetComponent<LanGameManager>().Rotate(dir);
+    }
+    
+    [Command]
+    void CmdOnPlaceCalled()
+    {
+        LanManager.GetComponent<LanGameManager>().OnPlaceCalled(gameObject);
+    }
+    
+    [ClientRpc]
+    public void RpcPlace()
+    {
+        LanManager.GetComponent<LanGameManager>().PlaceBlock();
     }
 }
