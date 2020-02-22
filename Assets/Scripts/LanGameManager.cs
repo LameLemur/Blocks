@@ -128,7 +128,10 @@ public class LanGameManager : MonoBehaviour
         onTurnPlayerIndex = (onTurnPlayerIndex + 1) % 2;
         Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
         if (IsGameFinished())
+        {
+            Debug.Log("gameisfinished");
             NewGame();
+        }
     }
 
     bool IsPlaceFree()

@@ -6,21 +6,19 @@ using Mirror;
 using UnityEngine;
 public class PlayerConnectionControler : NetworkBehaviour
 {
-    public int playerID = 1;
+    public int playerID = 0;
     private GameObject LanManager;
     private void Start()
     {
         LanManager = GameObject.Find("LanGameManager");
     }
-
-    private void OnConnectedToServer()
-    {
-        playerID = 0;
-    }
-
+    
     void Update()
     {
-        Debug.Log(playerID);
+        if (base.isServer)
+        {
+            playerID = 1;
+        }
         if (!isLocalPlayer)
             return;
         if (playerID != LanManager.GetComponent<LanGameManager>().onTurnPlayerIndex)
