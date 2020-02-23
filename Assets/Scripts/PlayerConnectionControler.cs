@@ -56,13 +56,13 @@ public class PlayerConnectionControler : NetworkBehaviour
     [Command]
     void CmdOnMoveCalled(string dir)
     {
-        LanManager.GetComponent<LanGameManager>().OnMoveCalled(dir, gameObject);
+        RpcMoveBlock(dir);
     }
 
     [ClientRpc]
     public void RpcMoveBlock(string dir)
     {
-        LanManager.GetComponent<LanGameManager>().MoveBlock(dir);
+        LanManager.GetComponent<LanGameManager>().OnMoveCalled(dir);
     }
     
     [Command]

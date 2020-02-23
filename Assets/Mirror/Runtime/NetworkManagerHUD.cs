@@ -66,7 +66,7 @@ namespace Mirror
                     GUILayout.EndHorizontal();
 
                     // LAN Server Only
-                    if (Application.platform == RuntimePlatform.WebGLPlayer)
+                    /*if (Application.platform == RuntimePlatform.WebGLPlayer)
                     {
                         // cant be a server in webgl build
                         GUILayout.Box("(  WebGL cannot be server  )");
@@ -74,7 +74,7 @@ namespace Mirror
                     else
                     {
                         if (GUILayout.Button("LAN Server Only")) manager.StartServer();
-                    }
+                    }*/
                 }
                 else
                 {

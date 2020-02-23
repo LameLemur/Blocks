@@ -1126,7 +1126,7 @@ ScriptsOnlyBuild:
     className: PlayerConnectionControler
   - hash:
       serializedVersion: 2
-      Hash: 4bbb62e4666614f147155eb0163c0f08
+      Hash: a4982a6a73dae2c77c2ff87c9c9e3cef
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LanGameManager

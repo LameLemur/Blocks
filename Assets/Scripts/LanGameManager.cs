@@ -14,7 +14,11 @@ public class LanGameManager : MonoBehaviour
     private int[] playerScore = {0, 0};
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject Block;
-    
+    [SerializeField] private GameObject Player1Name;
+    [SerializeField] private GameObject Player2Name;
+    [SerializeField] private GameObject Player1Score;
+    [SerializeField] private GameObject Player2Score;
+
     void Start()
     {
         ResetGameGrid();
@@ -22,8 +26,8 @@ public class LanGameManager : MonoBehaviour
         CurrentCord.y = (Values.cellCount + 1) / 2;
         Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
         
-        GameObject.Find("Player1Name").GetComponent<Text>().text = Values.playerName[0];
-        GameObject.Find("Player2Name").GetComponent<Text>().text = Values.playerName[1];
+        Player1Name.GetComponent<Text>().text = Values.playerName[0];
+        Player2Name.GetComponent<Text>().text = Values.playerName[1];
         
     }
     
@@ -37,7 +41,7 @@ public class LanGameManager : MonoBehaviour
             Player.GetComponent<PlayerHandler>().RotateLeft(); 
     }
 
-    public void OnMoveCalled(string dir, GameObject sender)
+    public void OnMoveCalled(string dir)
     {
         switch (dir)
         {
@@ -45,36 +49,31 @@ public class LanGameManager : MonoBehaviour
                 if (CurrentCord.y + 1 < Values.cellCount)
                 {
                     CurrentCord.y++;
-                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
+                    Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
             case "down":
                 if (CurrentCord.y - 1 > 0)
                 {
                     CurrentCord.y--;
-                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
+                    Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
             case "left":
                 if (CurrentCord.x - 1 > 0)
                 {
                     CurrentCord.x--;
-                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
+                    Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
             case "right":
                 if (CurrentCord.x + 1 < Values.cellCount)
                 {
                     CurrentCord.x++;
-                    sender.GetComponent<PlayerConnectionControler>().RpcMoveBlock(dir);
+                    Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
         }
-    }
-
-    public void MoveBlock(string dir)
-    {
-        Player.GetComponent<PlayerHandler>().Move(dir);
     }
     
     void ResetGameGrid()
@@ -127,9 +126,9 @@ public class LanGameManager : MonoBehaviour
         Instantiate(Block, Player.transform.position,Quaternion.identity);
         onTurnPlayerIndex = (onTurnPlayerIndex + 1) % 2;
         Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
+        PrintGame();
         if (IsGameFinished())
         {
-            Debug.Log("gameisfinished");
             NewGame();
         }
     }
@@ -187,11 +186,23 @@ public class LanGameManager : MonoBehaviour
         {
             Destroy(g);
         }
-
-        GameObject score1 = GameObject.FindGameObjectWithTag("Player1Score");
-        GameObject score2 = GameObject.FindGameObjectWithTag("Player2Score");
-        score1.GetComponent<Text>().text = playerScore[0].ToString();
-        score2.GetComponent<Text>().text = playerScore[1].ToString();
+        Player1Score.GetComponent<Text>().text = playerScore[0].ToString();
+        Player2Score.GetComponent<Text>().text = playerScore[1].ToString();
         ResetGameGrid();
+    }
+
+    void PrintGame()
+    {
+        Debug.Log(CurrentCord.x + " " + CurrentCord.y);
+        Debug.Log("–––––––––––––––––––––––––––––––––––––––––");
+        string []radky = new string[Values.cellCount];
+        for (int i = 0; i < Values.cellCount; i++)
+        {
+            for (int a = 0; a < Values.cellCount; a++)
+            {
+                radky[i] += gameGrid[i,a].ToString() + " ";
+            }
+            Debug.Log(radky[i]);
+        }
     }
 }
