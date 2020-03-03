@@ -80,23 +80,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10808}
     - Class: 114
-      Script: {instanceID: 11192}
+      Script: {instanceID: 11102}
     - Class: 114
-      Script: {instanceID: 11362}
+      Script: {instanceID: 11194}
     - Class: 114
-      Script: {instanceID: 11416}
+      Script: {instanceID: 11364}
     - Class: 114
       Script: {instanceID: 11418}
     - Class: 114
-      Script: {instanceID: 11648}
+      Script: {instanceID: 11420}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11650}
     - Class: 114
-      Script: {instanceID: 11886}
+      Script: {instanceID: 11810}
     - Class: 114
-      Script: {instanceID: 13930}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 13992}
+      Script: {instanceID: 11890}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -104,6 +104,114 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/LanModeSelect.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9686}
+    - Class: 114
+      Script: {instanceID: 9894}
+    - Class: 114
+      Script: {instanceID: 9938}
+    - Class: 114
+      Script: {instanceID: 10392}
+    - Class: 114
+      Script: {instanceID: 10808}
+    - Class: 114
+      Script: {instanceID: 11364}
+    - Class: 114
+      Script: {instanceID: 11824}
+    - Class: 114
+      Script: {instanceID: 11890}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/LanSelect.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9686}
+    - Class: 114
+      Script: {instanceID: 9894}
+    - Class: 114
+      Script: {instanceID: 9896}
+    - Class: 114
+      Script: {instanceID: 9938}
+    - Class: 114
+      Script: {instanceID: 10140}
+    - Class: 114
+      Script: {instanceID: 10276}
+    - Class: 114
+      Script: {instanceID: 10392}
+    - Class: 114
+      Script: {instanceID: 10588}
+    - Class: 114
+      Script: {instanceID: 10808}
+    - Class: 114
+      Script: {instanceID: 11036}
+    - Class: 114
+      Script: {instanceID: 11364}
+    - Class: 114
+      Script: {instanceID: 11802}
+    - Class: 114
+      Script: {instanceID: 11824}
+    - Class: 114
+      Script: {instanceID: 11842}
+    - Class: 114
+      Script: {instanceID: 11890}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -143,17 +251,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10808}
     - Class: 114
-      Script: {instanceID: 11192}
+      Script: {instanceID: 11194}
     - Class: 114
-      Script: {instanceID: 11362}
+      Script: {instanceID: 11364}
     - Class: 114
-      Script: {instanceID: 11418}
+      Script: {instanceID: 11420}
     - Class: 114
-      Script: {instanceID: 11648}
+      Script: {instanceID: 11650}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11886}
+      Script: {instanceID: 11890}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -170,7 +278,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
-    Assets/Scenes/PlayerSelect.unity:
+    Assets/Scenes/LocalSelect.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -208,15 +316,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11036}
     - Class: 114
-      Script: {instanceID: 11362}
+      Script: {instanceID: 11364}
     - Class: 114
-      Script: {instanceID: 11800}
+      Script: {instanceID: 11802}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11838}
+      Script: {instanceID: 11842}
     - Class: 114
-      Script: {instanceID: 11886}
+      Script: {instanceID: 11890}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -259,11 +367,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10808}
     - Class: 114
-      Script: {instanceID: 11362}
+      Script: {instanceID: 11364}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11886}
+      Script: {instanceID: 11890}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -306,13 +414,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10808}
     - Class: 114
-      Script: {instanceID: 11362}
+      Script: {instanceID: 11364}
     - Class: 114
-      Script: {instanceID: 11418}
+      Script: {instanceID: 11420}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11886}
+      Script: {instanceID: 11890}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -320,6 +428,67 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/SingleplayerSelect.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9686}
+    - Class: 114
+      Script: {instanceID: 9894}
+    - Class: 114
+      Script: {instanceID: 9896}
+    - Class: 114
+      Script: {instanceID: 9938}
+    - Class: 114
+      Script: {instanceID: 10140}
+    - Class: 114
+      Script: {instanceID: 10276}
+    - Class: 114
+      Script: {instanceID: 10392}
+    - Class: 114
+      Script: {instanceID: 10588}
+    - Class: 114
+      Script: {instanceID: 10808}
+    - Class: 114
+      Script: {instanceID: 11036}
+    - Class: 114
+      Script: {instanceID: 11364}
+    - Class: 114
+      Script: {instanceID: 11802}
+    - Class: 114
+      Script: {instanceID: 11824}
+    - Class: 114
+      Script: {instanceID: 11842}
+    - Class: 114
+      Script: {instanceID: 11890}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -357,11 +526,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10808}
     - Class: 114
-      Script: {instanceID: 11362}
+      Script: {instanceID: 11364}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11886}
+      Script: {instanceID: 11890}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -383,13 +552,45 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 20
       Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
     - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9686}
+    - Class: 114
+      Script: {instanceID: 9894}
+    - Class: 114
+      Script: {instanceID: 9938}
+    - Class: 114
+      Script: {instanceID: 10392}
+    - Class: 114
+      Script: {instanceID: 10808}
+    - Class: 114
+      Script: {instanceID: 11364}
+    - Class: 114
+      Script: {instanceID: 11824}
+    - Class: 114
+      Script: {instanceID: 11890}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -424,7 +625,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 4e55399bb1b81f08ab790913f62fbbac
+      Hash: 80d29dc59d9f93d662b6c465068cee76
     assemblyName: Mirror.dll
     namespaceName: Mirror
     className: NetworkManagerHUD
@@ -718,7 +919,7 @@ ScriptsOnlyBuild:
     className: Ball
   - hash:
       serializedVersion: 2
-      Hash: 8446f73e818cd2e722fb9c26ec368b42
+      Hash: 66c6a23b23ffcbe50d23e3413ac70416
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -848,6 +1049,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: Physics2DRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: e451c3209496ae292852384ebfdfffab
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerConnectionControler
   - hash:
       serializedVersion: 2
       Hash: f3a8ccc18ad656ac8993b34a1b30984f
@@ -1072,6 +1279,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: d589a840c7cc5db51aab7b1c4dd2251d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LanGameManager
+  - hash:
+      serializedVersion: 2
       Hash: e4fb2671f4e7782c0481d74d32ad6df2
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.Tanks
@@ -1118,18 +1331,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: e451c3209496ae292852384ebfdfffab
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerConnectionControler
-  - hash:
-      serializedVersion: 2
-      Hash: a4982a6a73dae2c77c2ff87c9c9e3cef
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LanGameManager
   platform: 2
   scenePathNames:
   - Assets/Scenes/StartScene.unity
@@ -1138,5 +1339,8 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Lan.unity
   - Assets/Scenes/Settings.unity
   - Assets/Scenes/Tut.unity
-  - Assets/Scenes/PlayerSelect.unity
+  - Assets/Scenes/LocalSelect.unity
+  - Assets/Scenes/LanSelect.unity
+  - Assets/Scenes/SingleplayerSelect.unity
+  - Assets/Scenes/LanModeSelect.unity
   playerPath: /Users/stepanstransky/Desktop/testBuild/BlocksBuild.app

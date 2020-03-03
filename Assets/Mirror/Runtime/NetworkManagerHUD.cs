@@ -32,6 +32,7 @@ namespace Mirror
         /// </summary>
         public int offsetY;
 
+        public bool host;
         void Awake()
         {
             manager = GetComponent<NetworkManager>();
@@ -47,23 +48,30 @@ namespace Mirror
             {
                 if (!NetworkClient.active)
                 {
-                    // LAN Host
-                    if (Application.platform != RuntimePlatform.WebGLPlayer)
+                    //LAN Host
+                    if (host)
                     {
-                        if (GUILayout.Button("LAN Host"))
+                        if (Application.platform != RuntimePlatform.WebGLPlayer)
                         {
-                            manager.StartHost();
+                            if (GUILayout.Button("LAN Host"))
+                            {
+                                manager.StartHost();
+                            }
                         }
                     }
 
-                    // LAN Client + IP
-                    GUILayout.BeginHorizontal();
-                    if (GUILayout.Button("LAN Client"))
+                    else
                     {
-                        manager.StartClient();
+                        GUILayout.BeginHorizontal();
+                        if (GUILayout.Button("Join"))
+                        {
+                            manager.StartClient();
+                        }
+                        manager.networkAddress = GUILayout.TextField(manager.networkAddress);
+                        GUILayout.EndHorizontal();
                     }
-                    manager.networkAddress = GUILayout.TextField(manager.networkAddress);
-                    GUILayout.EndHorizontal();
+                    // LAN Client + IP
+                    
 
                     // LAN Server Only
                     /*if (Application.platform == RuntimePlatform.WebGLPlayer)

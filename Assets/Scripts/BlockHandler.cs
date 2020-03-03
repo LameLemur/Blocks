@@ -14,7 +14,7 @@ public class BlockHandler : MonoBehaviour
     public int indexOfFirst = 3;
     public string color = "red";
     
-    void Start()
+    void Awake()
     {
         blocks[0] = gameObject.transform.GetChild(0).gameObject;
         blocks[1] = gameObject.transform.GetChild(1).gameObject;
@@ -92,7 +92,6 @@ public class BlockHandler : MonoBehaviour
         blocks[1].GetComponent<Transform>().localScale = scale;
         blocks[2].GetComponent<Transform>().localScale = scale;
     }
-
     
     public void InitRotation()
     {

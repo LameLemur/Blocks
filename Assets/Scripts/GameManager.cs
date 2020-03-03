@@ -14,28 +14,53 @@ public struct Cord
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private int[,] gameGrid = new int[Values.cellCount, Values.cellCount];
-    private int onTurnPlayerIndex = 0;
+    //Prefabs and player object init
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject Block;
-    private Cord CurrentCord;
+    
+    //UI objects init
+    [SerializeField] private GameObject Player1Name;
+    [SerializeField] private GameObject Player2Name;
+    [SerializeField] private GameObject Player1Score;
+    [SerializeField] private GameObject Player2Score;
+    
+    //Game variable
+    private int[,] gameGrid = new int[Values.cellCount, Values.cellCount];
+    private int onTurnPlayerIndex = 0;
+    private Cord currentCord;
     private int[] playerScore = {0, 0};
 
     void Start()
     {
+        //Internal logic setup
         ResetGameGrid();
-        CurrentCord.x = (Values.cellCount + 1) / 2;
-        CurrentCord.y = (Values.cellCount + 1) / 2;
+        currentCord.x = (Values.cellCount + 1) / 2;
+        currentCord.y = (Values.cellCount + 1) / 2;
+        
+        //UI setup
+        Player1Name.GetComponent<Text>().text = Values.playerName[0];
+        Player2Name.GetComponent<Text>().text = Values.playerName[1];
+        
         Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
         
-        GameObject.Find("Player1Name").GetComponent<Text>().text = Values.playerName[0];
-        GameObject.Find("Player2Name").GetComponent<Text>().text = Values.playerName[1];
-        
+        CheckSerielizedFields();
+    }
+    
+    void CheckSerielizedFields()
+    {
+        if (Player1Name == null)
+            Player1Name = GameObject.Find("Player1Name");
+        if (Player2Name == null)
+            Player2Name = GameObject.Find("Player2Name");
+        if (Player1Score == null)
+            Player1Score = GameObject.Find("Player1 score");
+        if (Player2Score == null)
+            Player2Score = GameObject.Find("Player2 score");
     }
     
     void Update()
     {
+        //Controls
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[onTurnPlayerIndex, 4])))
         {
             Rotate("L");
@@ -79,30 +104,30 @@ public class GameManager : MonoBehaviour
         switch (dir)
         {
             case "up":
-                if (CurrentCord.y + 1 < Values.cellCount)
+                if (currentCord.y + 1 < Values.cellCount)
                 {
-                    CurrentCord.y++;
+                    currentCord.y++;
                     Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
             case "down":
-                if (CurrentCord.y - 1 > 0)
+                if (currentCord.y - 1 > 0)
                 {
-                    CurrentCord.y--;
+                    currentCord.y--;
                     Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
             case "left":
-                if (CurrentCord.x - 1 > 0)
+                if (currentCord.x - 1 > 0)
                 {
-                    CurrentCord.x--;
+                    currentCord.x--;
                     Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
             case "right":
-                if (CurrentCord.x + 1 < Values.cellCount)
+                if (currentCord.x + 1 < Values.cellCount)
                 {
-                    CurrentCord.x++;
+                    currentCord.x++;
                     Player.GetComponent<PlayerHandler>().Move(dir);
                 }
                 break;
@@ -121,7 +146,7 @@ public class GameManager : MonoBehaviour
     
     void OnPlaceBlockCalled()
     {
-        if (IsPlaceFree())
+        if (IsPlaceFree()) 
         {
             PlaceBlock();
         }
@@ -132,39 +157,42 @@ public class GameManager : MonoBehaviour
         switch (Player.GetComponent<BlockHandler>().indexOfFirst)
         {
             case 0:
-                gameGrid[CurrentCord.x, CurrentCord.y] = 1;
-                gameGrid[CurrentCord.x - 1, CurrentCord.y] = 1;
-                gameGrid[CurrentCord.x - 1, CurrentCord.y - 1] = 1;
+                gameGrid[currentCord.x, currentCord.y] = 1;
+                gameGrid[currentCord.x - 1, currentCord.y] = 1;
+                gameGrid[currentCord.x - 1, currentCord.y - 1] = 1;
                 break;
             case 1:
-                gameGrid[CurrentCord.x, CurrentCord.y - 1] = 1;
-                gameGrid[CurrentCord.x - 1, CurrentCord.y] = 1;
-                gameGrid[CurrentCord.x, CurrentCord.y] = 1;
+                gameGrid[currentCord.x, currentCord.y - 1] = 1;
+                gameGrid[currentCord.x - 1, currentCord.y] = 1;
+                gameGrid[currentCord.x, currentCord.y] = 1;
                 break;
             case 2:
-                gameGrid[CurrentCord.x, CurrentCord.y - 1] = 1;
-                gameGrid[CurrentCord.x - 1, CurrentCord.y - 1] = 1;
-                gameGrid[CurrentCord.x, CurrentCord.y] = 1;
+                gameGrid[currentCord.x, currentCord.y - 1] = 1;
+                gameGrid[currentCord.x - 1, currentCord.y - 1] = 1;
+                gameGrid[currentCord.x, currentCord.y] = 1;
                 break;
             case 3:
-                gameGrid[CurrentCord.x - 1, CurrentCord.y] = 1;
-                gameGrid[CurrentCord.x - 1, CurrentCord.y - 1] = 1;
-                gameGrid[CurrentCord.x, CurrentCord.y - 1] = 1;
+                gameGrid[currentCord.x - 1, currentCord.y] = 1;
+                gameGrid[currentCord.x - 1, currentCord.y - 1] = 1;
+                gameGrid[currentCord.x, currentCord.y - 1] = 1;
                 break;
         }
-
+        
+        //Creates new Block
         Block.GetComponent<BlockHandler>().indexOfFirst = Player.GetComponent<BlockHandler>().indexOfFirst;
         Block.GetComponent<BlockHandler>().color = Values.playerColor[onTurnPlayerIndex];
         Instantiate(Block, Player.transform.position,Quaternion.identity);
+        
         onTurnPlayerIndex = (onTurnPlayerIndex + 1) % 2;
         Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
+        
         if (IsGameFinished())
             NewGame();
     }
 
     bool IsPlaceFree()
     {
-        switch (gameGrid[CurrentCord.x,CurrentCord.y] + gameGrid[CurrentCord.x - 1,CurrentCord.y] + gameGrid[CurrentCord.x,CurrentCord.y - 1] + gameGrid[CurrentCord.x - 1,CurrentCord.y - 1])
+        switch (gameGrid[currentCord.x,currentCord.y] + gameGrid[currentCord.x - 1,currentCord.y] + gameGrid[currentCord.x,currentCord.y - 1] + gameGrid[currentCord.x - 1,currentCord.y - 1])
         {
             case 0:
                 return true;
@@ -172,19 +200,19 @@ public class GameManager : MonoBehaviour
                 switch (Player.GetComponent<BlockHandler>().indexOfFirst)
                 {
                     case 0:
-                        if (gameGrid[CurrentCord.x, CurrentCord.y - 1] == 1)
+                        if (gameGrid[currentCord.x, currentCord.y - 1] == 1)
                             return true;
                         return false;
                     case 1:
-                        if (gameGrid[CurrentCord.x - 1, CurrentCord.y - 1] == 1)
+                        if (gameGrid[currentCord.x - 1, currentCord.y - 1] == 1)
                             return true;
                         return false;
                     case 2:
-                        if (gameGrid[CurrentCord.x - 1, CurrentCord.y] == 1)
+                        if (gameGrid[currentCord.x - 1, currentCord.y] == 1)
                             return true;
                         return false;
                     case 3:
-                        if (gameGrid[CurrentCord.x, CurrentCord.y] == 1)
+                        if (gameGrid[currentCord.x, currentCord.y] == 1)
                             return true;
                         return false;
                 }
@@ -210,16 +238,14 @@ public class GameManager : MonoBehaviour
     void NewGame()
     {
         playerScore[(onTurnPlayerIndex + 1) % 2] += 1;
-        GameObject []go = GameObject.FindGameObjectsWithTag("Block");
-        foreach (GameObject g in go) 
+        
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Block")) 
         {
             Destroy(g);
         }
-
-        GameObject score1 = GameObject.FindGameObjectWithTag("Player1Score");
-        GameObject score2 = GameObject.FindGameObjectWithTag("Player2Score");
-        score1.GetComponent<Text>().text = playerScore[0].ToString();
-        score2.GetComponent<Text>().text = playerScore[1].ToString();
+        
+        Player1Score.GetComponent<Text>().text = playerScore[0].ToString();
+        Player2Score.GetComponent<Text>().text = playerScore[1].ToString();
         ResetGameGrid();
     }
 }

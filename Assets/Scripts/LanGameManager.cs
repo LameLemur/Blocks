@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LanGameManager : MonoBehaviour
+public class LanGameManager : NetworkBehaviour
 {
     private int[,] gameGrid = new int[Values.cellCount, Values.cellCount];
     public int onTurnPlayerIndex = 0;
@@ -19,8 +20,14 @@ public class LanGameManager : MonoBehaviour
     [SerializeField] private GameObject Player1Score;
     [SerializeField] private GameObject Player2Score;
 
+    private void Awake()
+    {
+        GameObject.Find("NetworkManager").GetComponent<NetworkManagerHUD>().host = Values.gameMode == "lanhost";
+    }
+
     void Start()
     {
+        CheckSerielizedFields();
         ResetGameGrid();
         CurrentCord.x = (Values.cellCount + 1) / 2;
         CurrentCord.y = (Values.cellCount + 1) / 2;
@@ -28,10 +35,26 @@ public class LanGameManager : MonoBehaviour
         
         Player1Name.GetComponent<Text>().text = Values.playerName[0];
         Player2Name.GetComponent<Text>().text = Values.playerName[1];
-        
     }
-    
-    
+
+    public void UpdateNameAndColors()
+    {
+        Player1Name.GetComponent<Text>().text = Values.playerName[0];
+        Player2Name.GetComponent<Text>().text = Values.playerName[1];
+        
+        Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
+    }
+    void CheckSerielizedFields()
+    {
+        if (Player1Name == null)
+            Player1Name = GameObject.Find("Player1Name");
+        if (Player2Name == null)
+            Player2Name = GameObject.Find("Player2Name");
+        if (Player1Score == null)
+            Player1Score = GameObject.Find("Player1 score");
+        if (Player2Score == null)
+            Player2Score = GameObject.Find("Player2 score");
+    }
 
     public void Rotate(string dir)
     {
@@ -126,7 +149,6 @@ public class LanGameManager : MonoBehaviour
         Instantiate(Block, Player.transform.position,Quaternion.identity);
         onTurnPlayerIndex = (onTurnPlayerIndex + 1) % 2;
         Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
-        PrintGame();
         if (IsGameFinished())
         {
             NewGame();
@@ -178,31 +200,36 @@ public class LanGameManager : MonoBehaviour
         return true;
     }
 
-    void NewGame()
+    public void NewGame()
     {
-        playerScore[(onTurnPlayerIndex + 1) % 2] += 1;
-        GameObject []go = GameObject.FindGameObjectsWithTag("Block");
-        foreach (GameObject g in go) 
+        //Score
+        if (IsGameFinished())
+        {
+            playerScore[(onTurnPlayerIndex + 1) % 2] += 1;
+            Player1Score.GetComponent<Text>().text = playerScore[0].ToString();
+            Player2Score.GetComponent<Text>().text = playerScore[1].ToString();
+        }
+        
+        //Reset visual
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Block")) 
         {
             Destroy(g);
         }
-        Player1Score.GetComponent<Text>().text = playerScore[0].ToString();
-        Player2Score.GetComponent<Text>().text = playerScore[1].ToString();
+        
+        //Reset internal
         ResetGameGrid();
+        
+        //Reset Player
+        ResetPlayer();
     }
 
-    void PrintGame()
+    void ResetPlayer()
     {
-        Debug.Log(CurrentCord.x + " " + CurrentCord.y);
-        Debug.Log("–––––––––––––––––––––––––––––––––––––––––");
-        string []radky = new string[Values.cellCount];
-        for (int i = 0; i < Values.cellCount; i++)
-        {
-            for (int a = 0; a < Values.cellCount; a++)
-            {
-                radky[i] += gameGrid[i,a].ToString() + " ";
-            }
-            Debug.Log(radky[i]);
-        }
+        Player.GetComponent<BlockHandler>().indexOfFirst = 3;
+        Player.GetComponent<BlockHandler>().InitRotation();
+        Player.GetComponent<PlayerHandler>().SetColor(Values.playerColor[onTurnPlayerIndex]);
+        Player.GetComponent<Transform>().position = new Vector3(0, 0, 0);
+        CurrentCord.x = (Values.cellCount + 1) / 2;
+        CurrentCord.y = (Values.cellCount + 1) / 2;
     }
 }

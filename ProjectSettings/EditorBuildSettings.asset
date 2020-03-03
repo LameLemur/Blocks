@@ -24,6 +24,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Tut.unity
     guid: 94eb33ed6f944455ab3fadbe0aba6551
   - enabled: 1
-    path: Assets/Scenes/PlayerSelect.unity
+    path: Assets/Scenes/LocalSelect.unity
     guid: 5a71cc585909b4a309c066e0dffc9bbf
+  - enabled: 1
+    path: Assets/Scenes/LanSelect.unity
+    guid: fd002ffa0ced64bb6922f24ede8af20a
+  - enabled: 1
+    path: Assets/Scenes/SingleplayerSelect.unity
+    guid: b9f1bb07b9c654a3a8d934fe2cef8463
+  - enabled: 1
+    path: Assets/Scenes/LanModeSelect.unity
+    guid: 4454f81053dea46a68dce704b81a449a
   m_configObjects: {}

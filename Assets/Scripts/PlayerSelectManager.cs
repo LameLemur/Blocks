@@ -40,6 +40,9 @@ public class PlayerSelectManager : MonoBehaviour
         Values.playerColor[1] = seondplayer.ToLower();
         Values.playerName[0] = nameOne.GetComponent<Text>().text;
         Values.playerName[1] = nameTwo.GetComponent<Text>().text;
-        GameObject.Find("SceneChanger").GetComponent<SceneChanger>().changescene("local");
+        if(Values.gameMode == "local")
+            GameObject.Find("SceneChanger").GetComponent<SceneChanger>().changescene("local");
+        else
+            GameObject.Find("SceneChanger").GetComponent<SceneChanger>().changescene("lan");
     }
 }

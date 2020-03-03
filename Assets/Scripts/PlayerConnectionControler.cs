@@ -6,22 +6,25 @@ using Mirror;
 using UnityEngine;
 public class PlayerConnectionControler : NetworkBehaviour
 {
-    public int playerID = 0;
+    public int playerID = 1;
     private GameObject LanManager;
     private void Start()
     {
         LanManager = GameObject.Find("LanGameManager");
     }
-    
+
+    public override void OnStartLocalPlayer()
+    {
+        CmdSyncNameAndColors();
+    }
+
     void Update()
     {
         if (base.isServer)
         {
-            playerID = 1;
+            playerID = 0;
         }
-        if (!isLocalPlayer)
-            return;
-        if (playerID != LanManager.GetComponent<LanGameManager>().onTurnPlayerIndex)
+        if (!isLocalPlayer || playerID != LanManager.GetComponent<LanGameManager>().onTurnPlayerIndex || GameObject.Find("NetworkManager").GetComponent<NetworkManager>().numPlayers == 1)
             return;
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), Values.keys[0, 4])))
         {
@@ -87,5 +90,24 @@ public class PlayerConnectionControler : NetworkBehaviour
     public void RpcPlace()
     {
         LanManager.GetComponent<LanGameManager>().PlaceBlock();
+    }
+
+    [Command]
+    void CmdSyncNameAndColors()
+    {
+        RpcSyncNameAndColors(Values.playerName, Values.playerColor);
+    }
+
+    [ClientRpc]
+    void RpcSyncNameAndColors(String[]playerName, String[]playerColor)
+    {
+        Values.playerColor = playerColor;
+        Values.playerName = playerName;
+        
+        LanManager.GetComponent<LanGameManager>().UpdateNameAndColors();
+    }
+    private void OnDestroy()
+    {
+        LanManager.GetComponent<LanGameManager>().NewGame();
     }
 }

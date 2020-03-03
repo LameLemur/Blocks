@@ -29,8 +29,21 @@ public class SceneChanger : MonoBehaviour
             case "tut":
                 SceneManager.LoadScene(5);
                 break;
-            case "playsel":
+            case "localselect":
+                Values.gameMode = "local";
                 SceneManager.LoadScene(6);
+                break;
+            case "lanselect":
+                Values.gameMode = "lanhost";
+                SceneManager.LoadScene(7);
+                break;
+            case "singleselect":
+                Values.gameMode = "single";
+                SceneManager.LoadScene(8);
+                break;
+            case "lanmodeselect":
+                Values.gameMode = "lan";
+                SceneManager.LoadScene(9);
                 break;
         }
     }

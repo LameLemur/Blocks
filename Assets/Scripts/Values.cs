@@ -18,18 +18,25 @@ public static class Values
         return (float)(gridSize / cellCount);
     }
 
-    public static string []playerColor = {"red", "green"};
+    public static string[] playerColor = {"red", "green"};
     public static string[] playerName = {"Wilfréd", "Alfons"};
+
+    public static string gameMode = "local";
 }
 
 public static class Colors
 {
-    public static Color RED    = new Color( 1, 0, 0);
-    public static Color GREEN  = new Color( 0, 1, 0);
-    public static Color BLUE   = new Color( 0, 0, 1);
-    public static Color YELLOW = new Color( 1, 1, 0);
-    public static Color fadedRED    = new Color( 0.8f, 0.2f, 0.2f);
-    public static Color fadedGREEN  = new Color( 0.2f, 0.8f, 0.2f);
-    public static Color fadedBLUE   = new Color( 0.3f, 0.3f, 0.7f);
-    public static Color fadedYELLOW = new Color( 0.8f, 0.8f, 0.2f);
+    public static Color RED    = ConvertColor( 168, 0, 102);
+    public static Color GREEN  = ConvertColor( 168, 229, 48);
+    public static Color BLUE = ConvertColor(7, 212, 213);
+    public static Color YELLOW = ConvertColor( 250, 228, 8);
+    public static Color fadedRED = ConvertColor(120, 4, 74);
+    public static Color fadedGREEN = ConvertColor(103, 164, 4);
+    public static Color fadedBLUE = ConvertColor(0, 134, 137);
+    public static Color fadedYELLOW = ConvertColor(	234, 187, 4);
+    
+    static Color ConvertColor (float r, float g, float b)
+    {
+        return new Color(r/255.0f, g/255.0f, b/255.0f);
+    }
 }
